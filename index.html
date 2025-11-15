@@ -1,84 +1,98 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Confirmação de Presença – Carla & Júnior</title>
-<style>
-body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f7f5f2; color: #333; }
-header { background: #d5c3ff; padding: 40px 20px; text-align: center; }
-header h1 { margin: 0; font-size: 32px; }
-header p { margin: 8px 0 0; font-size: 18px; }
-section { padding: 20px; max-width: 600px; margin: auto; }
-form { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-input, select, textarea { width: 100%; padding: 10px; margin-top: 8px; margin-bottom: 16px; border-radius: 6px; border: 1px solid #ccc; }
-button { width: 100%; padding: 12px; background: #8a6cff; border: none; border-radius: 6px; color: white; font-size: 16px; cursor: pointer; }
-button:hover { background: #7b5af7; }
-footer { text-align: center; padding: 20px; font-size: 14px; color: #888; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmação de Presença - Carla & Junior</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #faf7f2;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            color: #444;
+        }
+
+        .foto-topo {
+            width: 100%;
+            max-width: 900px;
+            border-radius: 10px;
+            margin-top: 25px;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-top: 20px;
+            color: #b56b6b;
+        }
+
+        .contador {
+            font-size: 24px;
+            margin: 15px 0 30px;
+            color: #444;
+            font-weight: bold;
+        }
+
+        iframe {
+            width: 95%;
+            height: 900px;
+            max-width: 650px;
+            border: none;
+        }
+
+        .caixa {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            max-width: 700px;
+            margin: auto;
+            box-shadow: 0 0 10px #00000020;
+        }
+    </style>
 </head>
+
 <body>
 
-<header>
-  <h1>Casamento Carla & Júnior</h1>
-  <p>04 de abril de 2026</p>
-</header>
+    <img src="noivos.jpg" alt="Foto dos noivos" class="foto-topo">
 
-<section>
-  <h2>Confirme sua presença</h2>
-  <p>Ficaremos muito felizes com sua presença! Por favor, preencha o formulário abaixo:</p>
+    <h1>Carla & Junior</h1>
 
-  <form action="https://docs.google.com/forms/d/e/1FAIpQLSepzAD22xmL3Th1c2QbwoKQtoBCZ14A72v3YZNCxxmy2MR7qQ/formResponse"
-        method="POST" target="hidden_iframe" onsubmit="submitted=true;">
+    <div class="contador" id="contador"></div>
 
-    <label>Nome completo:</label>
-    <input type="text" name="entry.999928037" required>
+    <div class="caixa">
+        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSepzAD22xmL3Th1c2QbwoKQtoBCZ14A72v3YZNCxxmy2MR7qQ/viewform?usp=pp_url"></iframe>
+    </div>
 
-    <label>Você irá ao casamento?</label>
-    <select name="entry.311137244" required>
-      <option value="">Selecione</option>
-      <option value="Sim">Sim</option>
-      <option value="Não">Não</option>
-    </select>
+    <script>
+        // =======================
+        // Contador Regressivo
+        // =======================
+        const targetDate = new Date("2026-04-04T00:00:00");
 
-    <label>Quantas pessoas vão com você?</label>
-    <select name="entry.1252962778">
-      <option value="Apenas eu">Apenas eu</option>
-      <option value="2 pessoas">2 pessoas</option>
-      <option value="3 pessoas">3 pessoas</option>
-      <option value="4 ou mais">4 ou mais</option>
-    </select>
+        function atualizarContador() {
+            const now = new Date();
+            const diff = targetDate - now;
 
-    <label>Telefone (WhatsApp):</label>
-    <input type="text" name="entry.1321849489">
+            if (diff <= 0) {
+                document.getElementById("contador").innerHTML = "O grande dia chegou! 💍";
+                return;
+            }
 
-    <label>Observações:</label>
-    <textarea name="entry.1483047446" rows="4"></textarea>
+            const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutos = Math.floor((diff / (1000 * 60)) % 60);
+            const segundos = Math.floor((diff / 1000) % 60);
 
-    <button type="submit">Enviar confirmação</button>
-  </form>
+            document.getElementById("contador").innerHTML =
+                `${dias} dias • ${horas}h • ${minutos}m • ${segundos}s`;
+        }
 
-  <iframe name="hidden_iframe" style="display:none;"></iframe>
+        setInterval(atualizarContador, 1000);
+        atualizarContador();
+    </script>
 
-  <p id="msg-envio" style="display:none; margin-top: 16px; color: green;">
-    Obrigado por confirmar! Estamos muito felizes em compartilhar esse momento com você.<br>
-    — Carla & Júnior
-  </p>
-</section>
-
-<footer>Carla & Júnior • 2026</footer>
-
-<script>
-var submitted = false;
-document.querySelector('form').addEventListener('submit', function() {
-  setTimeout(function() {
-    if (submitted) {
-      document.getElementById('msg-envio').style.display = 'block';
-    }
-  }, 500);
-});
-</script>
- 
 </body>
 </html>
-<!-- atualização -->
+
