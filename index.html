@@ -113,7 +113,7 @@
             opacity: 0.9;
         }
 
-        /* --- Seção do Formulário (IFRAME) --- */
+        /* --- Seção do Formulário (IFRAME) - ALTERAÇÕES AQUI --- */
         .rsvp-section {
             margin-top: 40px;
             padding-top: 30px;
@@ -125,15 +125,32 @@
             color: var(--dark-blue);
             margin-bottom: 25px;
         }
-        .form-wrapper iframe {
+        .form-wrapper {
+            position: relative; /* Necessário para posicionamento absoluto do iframe */
             width: 100%;
-            min-height: 1500px; /* Altura padrão para o formulário */
-            height: auto;
-            border: none;
-            overflow: auto;
-            -webkit-overflow-scrolling: touch;
-            border-radius: 10px; /* Bordas arredondadas para o iframe */
+            padding-bottom: 1500px; /* Define a altura do wrapper, ajuste conforme o tamanho do seu formulário */
+            height: 0; /* Reseta a altura para que padding-bottom defina a proporção */
+            overflow: hidden; /* Garante que o iframe não cause rolagem extra no wrapper */
+            border-radius: 10px;
             box-shadow: 0 5px 15px var(--shadow-light);
+            background-color: var(--white); /* Fundo branco para garantir que não haja transparência estranha */
+            transform: translateZ(0); /* Ajuda em alguns casos de renderização/GPU */
+            -webkit-transform: translateZ(0);
+        }
+        .form-wrapper iframe {
+            position: absolute; /* Posição absoluta dentro do wrapper */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            overflow: auto; /* Garante que as barras de rolagem apareçam DENTRO do iframe se o conteúdo for maior */
+            -webkit-overflow-scrolling: touch; /* Melhor rolagem em dispositivos iOS */
+            display: block; /* Garante que é um elemento de bloco */
+            opacity: 1; /* Garante que não está transparente */
+            visibility: visible; /* Garante que não está oculto */
+            /* Z-index pode ajudar em alguns cenários de sobreposição, mas geralmente não é necessário para iframes */
+            z-index: 1;
         }
 
         .info-contact {
@@ -147,15 +164,15 @@
         /* --- Responsividade Aprimorada --- */
         @media (max-width: 768px) {
             body {
-                padding: 10px; /* Menos padding no corpo */
+                padding: 10px;
             }
             .container {
-                padding: 25px 15px; /* Mais compacto em celulares */
+                padding: 25px 15px;
                 margin: 15px auto;
-                max-width: 95%; /* Ocupa quase toda a largura */
+                max-width: 95%;
             }
             .couple-names {
-                font-size: 2.8em; /* Ajuste para celular */
+                font-size: 2.8em;
             }
             h2 {
                 font-size: 1.4em;
@@ -182,8 +199,8 @@
             #countdown-timer small {
                 font-size: 0.7em;
             }
-            .form-wrapper iframe {
-                min-height: 1000px; /* Altura específica para celulares */
+            .form-wrapper {
+                 padding-bottom: 1000px; /* Altura para celulares */
             }
             .info-contact {
                 margin-top: 30px;
@@ -205,8 +222,8 @@
             #countdown-timer span {
                 font-size: 1.8em;
             }
-            .form-wrapper iframe {
-                min-height: 800px; /* Pode ser ainda menor em telas muito pequenas */
+            .form-wrapper {
+                 padding-bottom: 800px; /* Altura para celulares muito pequenos */
             }
         }
     </style>
@@ -231,7 +248,7 @@
         <div class="rsvp-section">
             <p class="form-intro">Por favor, utilize o formulário abaixo para confirmar sua presença:</p>
             <div class="form-wrapper">
-                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSepzAD22xmL3Th1c2QbwoKQtoBCZ14A72v3YZNCZxxmy2MR7qQ/viewform?embedded=true" width="640" height="1181" frameborder="0" marginheight="0" marginwidth="0">Carregando…</iframe>
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSepzAD22xmL3Th1c2QbwoKQtoBCZ14A72v3YZNCxxmy2MR7qQ/viewform?embedded=true" width="640" height="1181" frameborder="0" marginheight="0" marginwidth="0">Carregando…</iframe>
             </div>
         </div>
 
@@ -276,4 +293,3 @@
     </script>
 </body>
 </html>
-<<!-- atualização -->>
