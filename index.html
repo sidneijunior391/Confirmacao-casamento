@@ -100,11 +100,14 @@
             font-size: 1.2em;
             font-weight: 600;
         }
-        /* Estilos do Iframe para responsividade */
+        /* Estilos do Iframe para responsividade - ALTERADO AQUI */
         .form-wrapper iframe {
             width: 100%;
-            min-height: 1181px; /* Usa a altura do seu iframe, mas pode ser ajustada para telas menores */
+            min-height: 1500px; /* Aumentado para garantir que todo o formulário caiba */
+            height: auto; /* Deixa o navegador ajustar se o min-height for suficiente */
             border: none;
+            overflow: auto; /* Garante que as barras de rolagem apareçam dentro do iframe se o conteúdo for maior */
+            -webkit-overflow-scrolling: touch; /* Melhor rolagem em dispositivos iOS */
         }
 
         /* Responsividade */
@@ -128,7 +131,8 @@
                 font-size: 0.7em;
             }
             .form-wrapper iframe {
-                height: 800px; /* Reduz a altura do iframe em telas menores */
+                height: 1000px; /* Altura específica para celulares */
+                min-height: 1000px; /* Garante altura mínima para ver o formulário */
             }
         }
     </style>
@@ -193,4 +197,3 @@
     </script>
 </body>
 </html>
-<<!--atualização >>
