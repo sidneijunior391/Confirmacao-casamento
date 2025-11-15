@@ -3,150 +3,193 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulário de Pedido de Insumos com Contagem Regressiva</title>
+    <title>Confirmação de Presença - Casamento Carla & Junior</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --light-blue-bg: #e0f2f7; /* Fundo muito claro */
+            --mid-blue-accent: #a7d9ed; /* Azul médio para detalhes */
+            --dark-blue-text: #2c3e50; /* Azul escuro para texto */
+            --vibrant-blue: #3498db; /* Azul vibrante para títulos */
+            --white: #ffffff;
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Open Sans', sans-serif;
             margin: 0;
             padding: 20px;
-            background-color: #e0f2f7; /* Azul claro de fundo */
-            color: #2c3e50; /* Azul escuro para o texto principal */
+            background-color: var(--light-blue-bg);
+            color: var(--dark-blue-text);
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
+            text-align: center;
         }
         .container {
             max-width: 800px;
             width: 100%;
-            background-color: #ffffff; /* Fundo branco para o container */
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            text-align: center;
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
             box-sizing: border-box;
-        }
-        h1 {
-            color: #3498db; /* Azul vibrante para o título */
-            margin-bottom: 25px;
-        }
-        p {
-            line-height: 1.6;
+            margin-top: 20px;
             margin-bottom: 20px;
         }
-        /* Estilos para a contagem regressiva */
+        h1 {
+            font-family: 'Playfair Display', serif;
+            color: var(--vibrant-blue);
+            font-size: 3em;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--dark-blue-text);
+            font-size: 1.8em;
+            margin-top: 0;
+            margin-bottom: 30px;
+        }
+        p {
+            line-height: 1.8;
+            margin-bottom: 25px;
+            font-size: 1.1em;
+        }
+
+        /* Contagem Regressiva */
         #countdown {
-            margin: 30px 0;
-            padding: 15px;
-            background-color: #a7d9ed; /* Azul médio para o fundo da contagem */
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-            font-size: 1.2em;
+            margin: 35px 0;
+            padding: 20px;
+            background-color: var(--mid-blue-accent);
+            border-radius: 10px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
             font-weight: bold;
-            color: #1a5276; /* Azul escuro para o texto da contagem */
+            color: var(--dark-blue-text);
             display: flex;
             justify-content: center;
-            flex-wrap: wrap; /* Para quebrar linha em telas menores */
-            gap: 15px; /* Espaço entre os elementos de tempo */
+            flex-wrap: wrap;
+            gap: 25px;
         }
         #countdown div {
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-width: 60px; /* Largura mínima para cada box de tempo */
+            min-width: 70px;
         }
         #countdown span {
-            font-size: 2em; /* Tamanho maior para os números */
-            color: #21618c; /* Azul ainda mais escuro para os números */
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5em; /* Tamanho maior para os números */
+            color: var(--dark-blue-text);
+            line-height: 1;
         }
         #countdown small {
-            font-size: 0.7em;
+            font-size: 0.9em;
             text-transform: uppercase;
             margin-top: 5px;
-            color: #1a5276;
+            color: var(--dark-blue-text);
         }
 
-        .form-wrapper {
-            margin-top: 30px;
-            overflow: hidden;
+        /* Seção do Formulário (IFRAME) */
+        .rsvp-section {
+            margin-top: 40px;
+            border-top: 1px solid #eee;
+            padding-top: 30px;
         }
+        .rsvp-section p {
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+        /* Estilos do Iframe para responsividade */
         .form-wrapper iframe {
             width: 100%;
-            min-height: 1181px; /* Altura mínima, pode ser ajustada. */
+            min-height: 1181px; /* Usa a altura do seu iframe, mas pode ser ajustada para telas menores */
             border: none;
         }
+
+        /* Responsividade */
         @media (max-width: 768px) {
             .container {
-                padding: 15px;
+                padding: 20px;
             }
-            .form-wrapper iframe {
-                height: 800px; /* Ajuste a altura em telas menores se o formulário for longo */
+            h1 {
+                font-size: 2.2em;
+            }
+            h2 {
+                font-size: 1.4em;
             }
             #countdown {
-                font-size: 1em;
-                gap: 10px;
+                gap: 15px;
             }
             #countdown span {
-                font-size: 1.5em;
+                font-size: 2.5em;
+            }
+            #countdown small {
+                font-size: 0.7em;
+            }
+            .form-wrapper iframe {
+                height: 800px; /* Reduz a altura do iframe em telas menores */
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Bem-vindo(a) ao Nosso Formulário de Pedido de Insumos!</h1>
-        <p>Por favor, preencha o formulário abaixo com suas informações e solicitação de insumos. Agradecemos sua colaboração!</p>
+        <h1>Carla & Junior</h1>
+        <h2>Convidam para o Nosso Casamento!</h2>
+        <p>Alegria é ter você conosco neste dia tão especial em que uniremos nossas vidas.</p>
+        <p>Sua presença é nosso maior presente!</p>
 
         <div id="countdown">
-            <div><span id="days"></span><small>dias</small></div>
-            <div><span id="hours"></span><small>horas</small></div>
-            <div><span id="minutes"></span><small>minutos</small></div>
-            <div><span id="seconds"></span><small>segundos</small></div>
+            <div><span id="days">00</span><small>dias</small></div>
+            <div><span id="hours">00</span><small>horas</small></div>
+            <div><span id="minutes">00</span><small>minutos</small></div>
+            <div><span id="seconds">00</span><small>segundos</small></div>
         </div>
-        <p>Tempo restante para o prazo final do pedido:</p>
+        <p>Faltam para o Grande Dia!</p>
 
-        <div class="form-wrapper">
-            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSepzAD22xmL3Th1c2QbwoKQtoBCZ14A72v3YZNCxxmy2MR7qQ/viewform?embedded=true" width="640" height="1181" frameborder="0" marginheight="0" marginwidth="0">Carregando…</iframe>
+        <div class="rsvp-section">
+            <p>Por favor, utilize o formulário abaixo para confirmar sua presença:</p>
+            <div class="form-wrapper">
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSepzAD22xmL3Th1c2QbwoKQtoBCZ14A72v3YZNCxxmy2MR7qQ/viewform?embedded=true" width="640" height="1181" frameborder="0" marginheight="0" marginwidth="0">Carregando…</iframe>
+            </div>
         </div>
 
-        <p>Se tiver alguma dúvida ou precisar de assistência, por favor, entre em contato com nossa equipe.</p>
+        <div class="info-contact">
+            <p>Em caso de dúvidas, entre em contato com [Telefone/Email].</p>
+        </div>
     </div>
 
     <script>
-        // Define a data e hora final para a contagem regressiva (04/04/2026 as 17:00h)
-        const countdownDate = new Date("2026-04-04T17:00:00").getTime();
+        // Data e hora do casamento: 04 de Abril de 2026 as 17:00:00
+        const weddingDate = new Date("2026-04-04T17:00:00").getTime();
 
         // Atualiza a contagem a cada 1 segundo
         const x = setInterval(function() {
-
-            // Pega a data e hora atual
             const now = new Date().getTime();
+            const distance = weddingDate - now;
 
-            // Calcula a distância entre a data final e a data atual
-            const distance = countdownDate - now;
-
-            // Cálculos para dias, horas, minutos e segundos
             const days = Math.floor(distance / (1000 * 60 * 60 * 24));
             const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-            // Exibe os resultados nos elementos correspondentes
-            document.getElementById("days").innerHTML = days;
-            document.getElementById("hours").innerHTML = hours;
-            document.getElementById("minutes").innerHTML = minutes;
-            document.getElementById("seconds").innerHTML = seconds;
+            // Adiciona um zero inicial se o número for menor que 10
+            const formatTime = (time) => String(time).padStart(2, '0');
 
-            // Se a contagem regressiva terminar, exibe uma mensagem
+            document.getElementById("days").innerHTML = days;
+            document.getElementById("hours").innerHTML = formatTime(hours);
+            document.getElementById("minutes").innerHTML = formatTime(minutes);
+            document.getElementById("seconds").innerHTML = formatTime(seconds);
+
             if (distance < 0) {
                 clearInterval(x);
-                document.getElementById("countdown").innerHTML = "PRAZO ENCERRADO!";
-                document.getElementById("countdown").style.fontSize = "1.5em";
-                document.getElementById("countdown").style.color = "#e74c3c"; /* Vermelho para prazo encerrado */
-                document.getElementById("countdown").style.backgroundColor = "#ffe0e0";
+                document.getElementById("countdown").innerHTML = "O GRANDE DIA CHEGOU!";
+                document.getElementById("countdown").style.fontSize = "1.8em";
+                document.getElementById("countdown").style.color = "var(--vibrant-blue)";
+                document.getElementById("countdown").style.backgroundColor = "var(--light-blue-bg)";
             }
         }, 1000);
     </script>
 </body>
 </html>
-<!-- atualização -->
