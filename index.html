@@ -1,138 +1,152 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confirmação de Presença - Carla & Junior</title>
-
+    <title>Formulário de Pedido de Insumos com Contagem Regressiva</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: #e0f7ff; /* azul claro */
             margin: 0;
-            padding: 0;
-            text-align: center;
-            color: #333;
-        }
-
-        h1 {
-            font-size: 32px;
-            margin-top: 40px; /* ajustado após remoção da imagem */
-            color: #4a90e2; /* azul mais forte para título */
-        }
-
-        .contador {
-            font-size: 24px;
-            margin: 15px 0 30px;
-            color: #333;
-            font-weight: bold;
-        }
-
-        .caixa {
-            background: #ffffff;
             padding: 20px;
-            border-radius: 12px;
-            max-width: 700px;
-            margin: auto;
-            box-shadow: 0 0 10px rgba(0,0,0,0.15);
-            text-align: left;
+            background-color: #e0f2f7; /* Azul claro de fundo */
+            color: #2c3e50; /* Azul escuro para o texto principal */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
         }
-
-        .caixa input[type="text"],
-        .caixa input[type="number"],
-        .caixa textarea {
+        .container {
+            max-width: 800px;
             width: 100%;
-            padding: 10px;
-            margin: 8px 0 15px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-            font-size: 16px;
+            background-color: #ffffff; /* Fundo branco para o container */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
             box-sizing: border-box;
         }
-
-        .radio-group {
-            margin-bottom: 15px;
+        h1 {
+            color: #3498db; /* Azul vibrante para o título */
+            margin-bottom: 25px;
         }
-
-        .radio-group label {
-            margin-right: 20px;
-            font-size: 16px;
+        p {
+            line-height: 1.6;
+            margin-bottom: 20px;
         }
-
-        button {
-            background-color: #4a90e2; /* azul do botão */
-            color: white;
-            border: none;
-            padding: 12px;
-            width: 100%;
+        /* Estilos para a contagem regressiva */
+        #countdown {
+            margin: 30px 0;
+            padding: 15px;
+            background-color: #a7d9ed; /* Azul médio para o fundo da contagem */
             border-radius: 8px;
-            font-size: 18px;
-            cursor: pointer;
-            transition: background 0.3s;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #1a5276; /* Azul escuro para o texto da contagem */
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap; /* Para quebrar linha em telas menores */
+            gap: 15px; /* Espaço entre os elementos de tempo */
+        }
+        #countdown div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 60px; /* Largura mínima para cada box de tempo */
+        }
+        #countdown span {
+            font-size: 2em; /* Tamanho maior para os números */
+            color: #21618c; /* Azul ainda mais escuro para os números */
+        }
+        #countdown small {
+            font-size: 0.7em;
+            text-transform: uppercase;
+            margin-top: 5px;
+            color: #1a5276;
         }
 
-        button:hover {
-            background-color: #357ABD; /* azul escuro ao passar o mouse */
+        .form-wrapper {
+            margin-top: 30px;
+            overflow: hidden;
+        }
+        .form-wrapper iframe {
+            width: 100%;
+            min-height: 1181px; /* Altura mínima, pode ser ajustada. */
+            border: none;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            .form-wrapper iframe {
+                height: 800px; /* Ajuste a altura em telas menores se o formulário for longo */
+            }
+            #countdown {
+                font-size: 1em;
+                gap: 10px;
+            }
+            #countdown span {
+                font-size: 1.5em;
+            }
         }
     </style>
 </head>
-
 <body>
+    <div class="container">
+        <h1>Bem-vindo(a) ao Nosso Formulário de Pedido de Insumos!</h1>
+        <p>Por favor, preencha o formulário abaixo com suas informações e solicitação de insumos. Agradecemos sua colaboração!</p>
 
-    <h1>Carla & Junior</h1>
+        <div id="countdown">
+            <div><span id="days"></span><small>dias</small></div>
+            <div><span id="hours"></span><small>horas</small></div>
+            <div><span id="minutes"></span><small>minutos</small></div>
+            <div><span id="seconds"></span><small>segundos</small></div>
+        </div>
+        <p>Tempo restante para o prazo final do pedido:</p>
 
-    <div class="contador" id="contador"></div>
+        <div class="form-wrapper">
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSepzAD22xmL3Th1c2QbwoKQtoBCZ14A72v3YZNCxxmy2MR7qQ/viewform?embedded=true" width="640" height="1181" frameborder="0" marginheight="0" marginwidth="0">Carregando…</iframe>
+        </div>
 
-    <div class="caixa">
-        <form action="https://docs.google.com/forms/d/e/1vG8Qj-B0nxYyVYfDBI2ubpx17H0t_aqrPafHj9SPHGI/formResponse" method="POST" target="_self">
-
-            <!-- Nome do convidado -->
-            <input type="text" name="entry.999928037" placeholder="Seu nome" required>
-
-            <!-- Presença -->
-            <div class="radio-group">
-                <label><input type="radio" name="entry.311137244" value="Sim" required> Sim</label>
-                <label><input type="radio" name="entry.311137244" value="Não"> Não</label>
-            </div>
-
-            <!-- Número de acompanhantes -->
-            <input type="number" name="entry.1252962778" placeholder="Número de acompanhantes" min="0">
-
-            <!-- Mensagem opcional -->
-            <textarea name="entry.1321849489" placeholder="Mensagem (opcional)" rows="3"></textarea>
-
-            <button type="submit">Enviar Confirmação</button>
-        </form>
+        <p>Se tiver alguma dúvida ou precisar de assistência, por favor, entre em contato com nossa equipe.</p>
     </div>
 
     <script>
-        // =======================
-        // Contador Regressivo
-        // =======================
-        const targetDate = new Date("2026-04-04T00:00:00");
+        // Define a data e hora final para a contagem regressiva (04/04/2026 as 17:00h)
+        const countdownDate = new Date("2026-04-04T17:00:00").getTime();
 
-        function atualizarContador() {
-            const now = new Date();
-            const diff = targetDate - now;
+        // Atualiza a contagem a cada 1 segundo
+        const x = setInterval(function() {
 
-            if (diff <= 0) {
-                document.getElementById("contador").innerHTML = "O grande dia chegou! 💍";
-                return;
+            // Pega a data e hora atual
+            const now = new Date().getTime();
+
+            // Calcula a distância entre a data final e a data atual
+            const distance = countdownDate - now;
+
+            // Cálculos para dias, horas, minutos e segundos
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Exibe os resultados nos elementos correspondentes
+            document.getElementById("days").innerHTML = days;
+            document.getElementById("hours").innerHTML = hours;
+            document.getElementById("minutes").innerHTML = minutes;
+            document.getElementById("seconds").innerHTML = seconds;
+
+            // Se a contagem regressiva terminar, exibe uma mensagem
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "PRAZO ENCERRADO!";
+                document.getElementById("countdown").style.fontSize = "1.5em";
+                document.getElementById("countdown").style.color = "#e74c3c"; /* Vermelho para prazo encerrado */
+                document.getElementById("countdown").style.backgroundColor = "#ffe0e0";
             }
-
-            const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
-            const minutos = Math.floor((diff / (1000 * 60)) % 60);
-            const segundos = Math.floor((diff / 1000) % 60);
-
-            document.getElementById("contador").innerHTML =
-                `${dias} dias • ${horas}h • ${minutos}m • ${segundos}s`;
-        }
-
-        setInterval(atualizarContador, 1000);
-        atualizarContador();
+        }, 1000);
     </script>
-
 </body>
 </html>
 
