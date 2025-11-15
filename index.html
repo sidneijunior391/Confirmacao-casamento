@@ -81,3 +81,86 @@ document.querySelector('form').addEventListener('submit', function() {
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confirmação de Presença - Casamento</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff8f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+    h1 {
+      text-align: center;
+      color: #b45f06;
+    }
+    input[type="text"], input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    .radio-group {
+      margin: 10px 0;
+    }
+    .radio-group label {
+      margin-right: 15px;
+    }
+    button {
+      background-color: #b45f06;
+      color: white;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background-color: #92450a;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Confirme sua Presença</h1>
+    <form action="https://docs.google.com/forms/d/e/1vG8Qj-B0nxYyVYfDBI2ubpx17H0t_aqrPafHj9SPHGI/formResponse" method="POST" target="_self">
+      
+      <!-- Nome do convidado -->
+      <input type="text" name="entry.999928037" placeholder="Seu nome" required>
+      
+      <!-- Presença -->
+      <div class="radio-group">
+        <label><input type="radio" name="entry.311137244" value="Sim" required> Sim</label>
+        <label><input type="radio" name="entry.311137244" value="Não"> Não</label>
+      </div>
+      
+      <!-- Número de acompanhantes -->
+      <input type="number" name="entry.1252962778" placeholder="Número de acompanhantes" min="0">
+      
+      <!-- Mensagem opcional -->
+      <input type="text" name="entry.1321849489" placeholder="Mensagem (opcional)">
+      
+      <button type="submit">Enviar Confirmação</button>
+    </form>
+  </div>
+</body>
+</html>
